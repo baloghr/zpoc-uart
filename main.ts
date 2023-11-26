@@ -1,10 +1,12 @@
 serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-    if (serial.readString() == "Ahoj") {
+    received = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+    if (received == "Ahoj") {
         basic.showIcon(IconNames.Heart)
         basic.pause(5000)
         basic.clearScreen()
     }
 })
+let received = ""
 serial.setBaudRate(BaudRate.BaudRate9600)
 basic.forever(function () {
     serial.writeNumbers([
@@ -12,5 +14,5 @@ basic.forever(function () {
     input.acceleration(Dimension.Y),
     input.acceleration(Dimension.Z)
     ])
-    basic.pause(200)
+    basic.pause(100)
 })
