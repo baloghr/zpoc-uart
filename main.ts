@@ -9,10 +9,6 @@ serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
 let received = ""
 serial.setBaudRate(BaudRate.BaudRate9600)
 basic.forever(function () {
-    serial.writeNumbers([
-    input.acceleration(Dimension.X),
-    input.acceleration(Dimension.Y),
-    input.acceleration(Dimension.Z)
-    ])
+    serial.writeLine("accX:" + input.acceleration(Dimension.X) + ",accY:" + input.acceleration(Dimension.Y) + ",accZ:" + input.acceleration(Dimension.Z))
     basic.pause(100)
 })
